@@ -36,10 +36,10 @@ class DeliveryTest {
         $("[data-test-id=date] input").sendKeys(Keys.BACK_SPACE);
         $("[data-test-id=date] input").setValue(firstMeetingDate);
         $("[data-test-id=name] input").setValue(validUser.getName());
-        $("[name='phone'").setValue(validUser.getPhone());
+        $("[name='phone']").setValue(validUser.getPhone());
         $("[data-test-id=agreement").click();
         $(byClassName("button")).click();
-        $(withText("Встреча")).shouldHave(text("Встреча успешно запланирована на " + firstMeetingDate), Duration.ofSeconds(15)).shouldBe(visible);
+        $("[data-test-id='success-notification'] .notification__content").shouldHave(text("Встреча успешно запланирована на " + firstMeetingDate), Duration.ofSeconds(15)).shouldBe(visible);
         $("[data-test-id=date] input").doubleClick();
         $("[data-test-id=date] input").sendKeys(Keys.BACK_SPACE);
         $("[data-test-id=date] input").setValue(secondMeetingDate);
@@ -49,7 +49,6 @@ class DeliveryTest {
                 .shouldBe(visible);
         $("[data-test-id='replan-notification'] button").click();
         $("[data-test-id='success-notification'] .notification__content").shouldHave(exactText("Встреча успешно запланирована на " + secondMeetingDate)).shouldBe(visible);
-
 
 
     }
